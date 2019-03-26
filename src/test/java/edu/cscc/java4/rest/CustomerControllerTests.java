@@ -39,16 +39,16 @@ public class CustomerControllerTests {
 
 
   @Test
-  public void smoke_Test () throws Exception {
-    this.mockMvc.perform(get(RESOURCE_URI)).andExpect(status().isOk());
+  public void isPersistenceDesigedCorrectly_Test () throws ClassNotFoundException {
+    assertTrue(Class.forName("edu.cscc.java4.rest.data.CustomerRepository").isInterface());
   }
+
 
   /* ========== Uncomment one test at a time adding just enough code to get it to pass ========
 
-
   @Test
-  public void isPersistenceDesigedCorrectly_Test () throws ClassNotFoundException {
-    assertTrue(Class.forName("edu.cscc.java4.rest.data.CustomerRepository").isInterface());
+  public void smoke_Test () throws Exception {
+    this.mockMvc.perform(get(RESOURCE_URI)).andExpect(status().isOk());
   }
 
 
