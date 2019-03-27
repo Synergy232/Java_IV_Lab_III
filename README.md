@@ -123,7 +123,11 @@ Save changes to an existing customer
 * Step 1.1.6 creates a response entity with ``HttpStatus.NOT_FOUND`` if step 1.1.2 returns false
 * The response body is empty
 
+### Helpful Documentation
 
+* [1.3.2. Request Mapping](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-requestmapping)
+* [1.3.3. Handler Methods](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-ann-methods)
+* [1.4. URI Links](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-uri-building)
 
 ## Submitting Your Work
 
