@@ -128,6 +128,19 @@ public class CustomerControllerTests {
     assertEquals("http://localhost/api/customers/1", mockResponse.getHeader("Location"));
   }
 
+  @Test
+  public void createShouldValidateCustomer() throws Exception {
+    this.mockMvc.perform(post(RESOURCE_URI).content("{}")
+      .contentType(MediaType.APPLICATION_JSON))
+      .andExpect(status().isBadRequest())
+      .andExpect(jsonPath("$.fieldErrors", hasSize(2)))
+      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /firstName/i)].code").value("NotBlank"))
+      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /lastName/i)].code").value("NotBlank"));
+    verify(customerRepository, never()).save(any(Customer.class));
+  }
+
+
+
 
   @Test
   public void putExistingCustomerCallsSave_Test () throws Exception {
@@ -147,6 +160,19 @@ public class CustomerControllerTests {
       .andExpect(status().isNotFound());
     verify(customerRepository, never()).save(any(Customer.class));
   }
+
+  @Test
+  public void putShouldValidateCustomer() throws Exception {
+    mockMvc.perform(put(RESOURCE_URI_BY_ID, 1L).content("{\"firstName\": \"   \"}")
+      .contentType(MediaType.APPLICATION_JSON))
+      .andExpect(status().isBadRequest())
+      .andExpect(jsonPath("$.fieldErrors", hasSize(2)))
+      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /firstName/i)].code").value("NotBlank"))
+      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /lastName/i)].code").value("NotBlank"));
+    verify(customerRepository, never()).save(any(Customer.class));
+  }
+
+
 
   */
 
