@@ -16,6 +16,15 @@ Write a fully functional REST controller for the customers API
 
 __Important__ You may not change the code in any test cases. _The only permissible difference between the base version of the JUnit test class and yours is yours will have no tests commented out and the file is otherwise identical._
 
+1. Open [CustomerControllerValidationTests](src/test/java/edu/cscc/java4/rest/CustomerControllerValidationTests.java)
+1. One by one, uncomment each test, changing just enough code or configuration to make the test pass
+1. Once all tests are passing, commit your changes
+
+### OPTIONAL 
+
+This won't be graded but will demonstrate your understanding of Java Bean validation in REST 
+controllers
+
 1. Open [CustomerControllerTests](src/test/java/edu/cscc/java4/rest/CustomerControllerTests.java)
 1. One by one, uncomment each test, changing just enough code or configuration to make the test pass
 1. Once all tests are passing, commit your changes
@@ -23,6 +32,7 @@ __Important__ You may not change the code in any test cases. _The only permissib
 
 ## Submitting Your Work
 
+1. Push your changes to GitHub
 1. Create a pull request for your branch using [these instructions](https://github.com/jeff-anderson-cscc/submitting-assignments-lab#once-you-are-ready-to-submit-your-work-for-grading)
 1. Submit the assignment in Blackboard as described in [these instructions](https://github.com/jeff-anderson-cscc/submitting-assignments-lab#once-your-pull-request-is-created-and-i-am-added-as-a-reviewer)
 
