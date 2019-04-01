@@ -1,31 +1,30 @@
 package edu.cscc.java4.rest.domain;
 
-import javax.swing.*;
-
 public class Customer {
 
-  private Long id;
+  private long id;
   private String firstName;
   private String lastName;
+  private String emailAddress;
 
 
-  public Customer () {
-  }
+  public Customer () { }
 
 
-  public Customer (Long id, String firstName, String lastName) {
+  public Customer (long id, String firstName, String lastName, String emailAddress) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
+    this.emailAddress = emailAddress;
   }
 
 
-  public Long getId () {
+  public long getId () {
     return id;
   }
 
 
-  public void setId (Long id) {
+  public void setId (long id) {
     this.id = id;
   }
 
@@ -48,5 +47,12 @@ public class Customer {
   public void setLastName (String lastName) {
     this.lastName = lastName;
   }
+
+
+  public String getEmailAddress () { return emailAddress; }
+
+
+  public void setEmailAddress (String emailAddress) { this.emailAddress = emailAddress; }
+
 
 }
