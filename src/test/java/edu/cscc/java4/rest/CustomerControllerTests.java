@@ -43,42 +43,39 @@ public class CustomerControllerTests {
     assertTrue(Class.forName("edu.cscc.java4.rest.data.CustomerRepository").isInterface());
   }
 
-
   /* ========== Uncomment one test at a time adding just enough code to get it to pass ========
 
+
   @Test
-  public void smoke_Test () throws Exception {
-    this.mockMvc.perform(get(RESOURCE_URI)).andExpect(status().isOk());
+  public void getAllCustomersWorksWithEmptyList_Test () throws Exception {
+    // No customers:
+    when(customerRepository.findAll()).thenReturn(getMockCustomers());
+    this.mockMvc.perform(get(RESOURCE_URI)).andExpect(status().isOk())
+      .andExpect(jsonPath("$.customers.length()").value(0));
   }
 
 
   @Test
   public void getAllCustomersWorks_Test () throws Exception {
-    // No customers:
-    when(customerRepository.findAll()).thenReturn(getMockCustomers());
-    this.mockMvc.perform(get(RESOURCE_URI)).andExpect(status().isOk())
-      .andExpect(jsonPath("$.length()").value(0));
-
     // One customer:
     when(customerRepository.findAll()).thenReturn(getMockCustomers(
       new Customer(0L, "f1", "l1", "e1")));
     this.mockMvc.perform(get(RESOURCE_URI)).andExpect(status().isOk())
-      .andExpect(jsonPath("$.length()").value(1))
-      .andExpect(jsonPath("$[0].lastName").value("l1"))
-      .andExpect(jsonPath("$[0].firstName").value("f1"));
+      .andExpect(jsonPath("$.customers.length()").value(1))
+      .andExpect(jsonPath("$.customers[0].lastName").value("l1"))
+      .andExpect(jsonPath("$.customers[0].firstName").value("f1"));
 
     // Two customers:
     when(customerRepository.findAll()).thenReturn(getMockCustomers(
       new Customer(0L, "f1", "l1", "e1"),
       new Customer(1L, "f2", "l2", "e2")));
     this.mockMvc.perform(get(RESOURCE_URI)).andExpect(status().isOk())
-      .andExpect(jsonPath("$.length()").value(2))
-      .andExpect(jsonPath("$[0].lastName").value("l1"))
-      .andExpect(jsonPath("$[0].firstName").value("f1"))
-      .andExpect(jsonPath("$[1].lastName").value("l2"))
-      .andExpect(jsonPath("$[1].firstName").value("f2"));
+      .andExpect(jsonPath("$.customers.length()").value(2))
+      .andExpect(jsonPath("$.customers[0].lastName").value("l1"))
+      .andExpect(jsonPath("$.customers[0].firstName").value("f1"))
+      .andExpect(jsonPath("$.customers[1].lastName").value("l2"))
+      .andExpect(jsonPath("$.customers[1].firstName").value("f2"));
   }
-
 
   @Test
   public void getValidCustomerByIdWorks_Test () throws Exception {
@@ -128,19 +125,6 @@ public class CustomerControllerTests {
     assertEquals("http://localhost/api/customers/1", mockResponse.getHeader("Location"));
   }
 
-  @Test
-  public void createShouldValidateCustomer() throws Exception {
-    this.mockMvc.perform(post(RESOURCE_URI).content("{}")
-      .contentType(MediaType.APPLICATION_JSON))
-      .andExpect(status().isBadRequest())
-      .andExpect(jsonPath("$.fieldErrors", hasSize(2)))
-      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /firstName/i)].code").value("NotBlank"))
-      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /lastName/i)].code").value("NotBlank"));
-    verify(customerRepository, never()).save(any(Customer.class));
-  }
-
-
-
 
   @Test
   public void putExistingCustomerCallsSave_Test () throws Exception {
@@ -161,20 +145,7 @@ public class CustomerControllerTests {
     verify(customerRepository, never()).save(any(Customer.class));
   }
 
-  @Test
-  public void putShouldValidateCustomer() throws Exception {
-    mockMvc.perform(put(RESOURCE_URI_BY_ID, 1L).content("{\"firstName\": \"   \"}")
-      .contentType(MediaType.APPLICATION_JSON))
-      .andExpect(status().isBadRequest())
-      .andExpect(jsonPath("$.fieldErrors", hasSize(2)))
-      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /firstName/i)].code").value("NotBlank"))
-      .andExpect(jsonPath("$.fieldErrors[?(@.field =~ /lastName/i)].code").value("NotBlank"));
-    verify(customerRepository, never()).save(any(Customer.class));
-  }
-
-
-
-  */
+   */
 
   private Collection<Customer> getMockCustomers (Customer... customerArgs) {
     HashMap<Long, Customer> customers = new HashMap<>();
