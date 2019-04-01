@@ -135,7 +135,7 @@ Save changes to an existing customer
 This won't be graded but will demonstrate your understanding of Java Bean validation in REST 
 controllers
 
-1. Open [CustomerControllerTests](src/test/java/edu/cscc/java4/rest/CustomerControllerTests.java)
+1. Open [CustomerControllerValidationTests](src/test/java/edu/cscc/java4/rest/CustomerControllerValidationTests.java)
 1. One by one, uncomment each test, changing just enough code or configuration to make the test pass
 1. Once all tests are passing, commit your changes
 
