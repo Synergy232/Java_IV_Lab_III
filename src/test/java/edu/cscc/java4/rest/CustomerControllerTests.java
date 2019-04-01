@@ -45,7 +45,6 @@ public class CustomerControllerTests {
 
   /* ========== Uncomment one test at a time adding just enough code to get it to pass ========
 
-
   @Test
   public void getAllCustomersWorksWithEmptyList_Test () throws Exception {
     // No customers:
@@ -117,7 +116,7 @@ public class CustomerControllerTests {
     when(customerRepository.save(any(Customer.class))).thenReturn(testCustomer);
 
     MvcResult result = this.mockMvc.perform(post(RESOURCE_URI).contentType(MediaType.APPLICATION_JSON_UTF8)
-      .content("{\"firstName\": \"first\", \"lastName\": \"last\"}"))
+      .content("{\"firstName\": \"first\", \"lastName\": \"last\", \"emailAddress\": \"foo@bar.com\"}"))
       .andExpect(status().isCreated()).andReturn();
     ;
     verify(customerRepository, times(1)).save(any(Customer.class));
@@ -130,7 +129,7 @@ public class CustomerControllerTests {
   public void putExistingCustomerCallsSave_Test () throws Exception {
     when(customerRepository.existsById(1L)).thenReturn(true);
     this.mockMvc.perform(put(RESOURCE_URI + "/1").contentType(MediaType.APPLICATION_JSON_UTF8)
-      .content("{\"firstName\": \"first\", \"lastName\": \"last\"}"))
+      .content("{\"firstName\": \"first\", \"lastName\": \"last\", \"emailAddress\": \"foo@bar.com\"}"))
       .andExpect(status().isNoContent());
     verify(customerRepository, times(1)).save(any(Customer.class));
   }
@@ -140,7 +139,7 @@ public class CustomerControllerTests {
   public void putNonexistentCustomerReturnsNotFound_Test () throws Exception {
     when(customerRepository.existsById(1L)).thenReturn(false);
     this.mockMvc.perform(put(RESOURCE_URI + "/1").contentType(MediaType.APPLICATION_JSON_UTF8)
-      .content("{\"firstName\": \"first\", \"lastName\": \"last\"}"))
+      .content("{\"firstName\": \"first\", \"lastName\": \"last\", \"emailAddress\": \"foo@bar.com\"}"))
       .andExpect(status().isNotFound());
     verify(customerRepository, never()).save(any(Customer.class));
   }
