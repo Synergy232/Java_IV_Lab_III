@@ -16,7 +16,7 @@ Write a fully functional REST controller for the customers API
 
 __Important__ You may not change the code in any test cases. _The only permissible difference between the base version of the JUnit test class and yours is yours will have no tests commented out and the file is otherwise identical._
 
-1. Open [CustomerControllerValidationTests](src/test/java/edu/cscc/java4/rest/CustomerControllerValidationTests.java)
+1. Open [CustomerControllerTests](src/test/java/edu/cscc/java4/rest/CustomerControllerTests.java)
 1. One by one, uncomment each test, changing just enough code or configuration to make the test pass
 1. Once all tests are passing, commit your changes
 
@@ -110,7 +110,7 @@ Save changes to an existing customer
 }
 ```
 ![saveCustomer sequence diagram](doc/images/saveCustomer-sequence.png)
-* Step 1.1.4 creates a response entity with the return data and ``HttpStatus.OK`` if step 1.1.1 returns true
+* Step 1.1.4 creates a response entity with the return data and ``HttpStatus.NO_CONTENT`` if step 1.1.1 returns true
 * Step 1.1.5 creates a response entity with ``HttpStatus.NOT_FOUND`` if step 1.1.1 returns false
 * The response body is empty
 
