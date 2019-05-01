@@ -66,15 +66,11 @@ public class CustomerController {
 
     @PostMapping("/api/customers")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> createUser(@RequestBody Customer customer) {
+    public ResponseEntity<?> createCustomer (@RequestBody Customer customer, UriComponentsBuilder b) {
         Customer newCustomer = customerRepository.save(customer);
-
-        UriComponentsBuilder.newInstance().scheme("http").host("localhost");
-
-        UriComponents uriComponents = UriComponentsBuilder.newInstance()
-                .scheme("http").host("localhost").path("/api/customers/{id}").buildAndExpand(newCustomer.getId());
+        // ID will be ZERO if you don't use the customer returned from the save call:
+        UriComponents uriComponents = b.path("/api/customers/{id}").buildAndExpand(newCustomer.getId());
         return ResponseEntity.created(uriComponents.toUri()).build();
-
     }
 
 }
