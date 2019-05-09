@@ -43,7 +43,7 @@ public class CustomerControllerTests {
     assertTrue(Class.forName("edu.cscc.java4.rest.data.CustomerRepository").isInterface());
   }
 
-  /* ========== Uncomment one test at a time adding just enough code to get it to pass ========
+
 
   @Test
   public void getAllCustomersWorksWithEmptyList_Test () throws Exception {
@@ -118,7 +118,7 @@ public class CustomerControllerTests {
     MvcResult result = this.mockMvc.perform(post(RESOURCE_URI).contentType(MediaType.APPLICATION_JSON_UTF8)
       .content("{\"firstName\": \"first\", \"lastName\": \"last\", \"emailAddress\": \"foo@bar.com\"}"))
       .andExpect(status().isCreated()).andReturn();
-    ;
+
     verify(customerRepository, times(1)).save(any(Customer.class));
     MockHttpServletResponse mockResponse = result.getResponse();
     assertEquals("http://localhost/api/customers/1", mockResponse.getHeader("Location"));
@@ -144,7 +144,7 @@ public class CustomerControllerTests {
     verify(customerRepository, never()).save(any(Customer.class));
   }
 
-   */
+
 
   private Collection<Customer> getMockCustomers (Customer... customerArgs) {
     HashMap<Long, Customer> customers = new HashMap<>();
