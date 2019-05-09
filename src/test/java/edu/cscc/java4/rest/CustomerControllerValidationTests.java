@@ -44,6 +44,11 @@ public class CustomerControllerValidationTests {
    *   OPTIONAL  -- Bonus learning that is completely optional but recommended to learn Java Bean validation for REST
    */
 
+   @Test
+   public void smoke_test () {
+
+   }
+   
    /* ========== Uncomment one test at a time adding just enough code to get it to pass ========
 
   @Test
